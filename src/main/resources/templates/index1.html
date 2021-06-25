@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <style>
+    .header{
+      text-align: center;
+      margin: 1rem 0rem;
+      padding: 1rem 0rem;
+      text-decoration: underline;
+    }
+  </style>
+  <style>
+    .count{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 2px solid red;
+      width: 500px;
+      margin: 1rem 0rem;
+      padding: 1rem 0rem;
+    }
+    .wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+
+      margin-top: 1rem;
+      table-layout: auto;
+      width:50%;
+    }
+
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    table.c {
+
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: #04AA6D;
+      color: white;
+    }
+    td,th{
+      text-align: center;
+    }
+    .laaal{
+      color: red;
+      margin-top: 0.5rem;
+    }
+    h1,h2,h3,p{
+      margin: 0;
+      padding: 0;
+
+    }
+  </style>
+  <title>Covid19 Tracker Application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div class="wrapper">
+<h1 class="header">Covid19 Tracker Application</h1>
+<h3>This Application tracks reported data of confirmed corona virus people around the globe.</h3>
+<div class="count">
+<h3>Total Cases reported all over the Globe*</h3>
+<h1 class="laaal" th:text="${Totalreporttedcases}"></h1>
+</div>
+
+
+<p> *Data is updated on a daily basis</p>
+<p th:text="${testname}"></p>
+<table id="customers" class="c">
+  <tr>
+    <th>Country</th>
+    <th>State</th>
+    <th>Total Cases</th>
+  </tr>
+  <tr th:each="locationstat : ${locationstats}">
+    <td th:text="${locationstat.getCountry()}"></td>
+    <td th:text="${locationstat.getState()}">State data not Available</td>
+    <td th:text="${locationstat.getTotal()}">0</td>
+  </tr>
+</table>
+</div>
+</body>
+
+</html>
